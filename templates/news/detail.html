@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+    <article class="news-detail">
+        <h2>{{ post.title }}</h2>
+        <p class="news-meta">Sana: <time datetime="{{ post.created_at }}"> {{ post.created_at|date:"Y-m-d" }}</time> | Muallif: {{ post.author }}</p>
+        <div class="news-content">
+            <p>{{post.long_content}}</p>
+        </div>
+    </article>
+    </div>
+{% endblock %}

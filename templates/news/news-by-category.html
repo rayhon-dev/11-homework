@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ category|capfirst }} Yangiliklar{% endblock %}
+
+{% block content %}
+    <h1>{{ category|capfirst }} bo'yicha yangiliklar</h1>
+    {% if posts %}
+        <ul class="news-list">
+            {% for post in posts %}
+                <li>
+                    <h2><a href="{% url 'news:post_detail' post.id %}">{{ post.title }}</a></h2>
+                    <p><strong>Muallif:</strong> {{ post.author }}</p>
+                    <p><strong>Qisqa tavsif:</strong> {{ post.short_content|truncatewords:20 }}</p>
+                    <a href="{% url 'news:post_detail' post.id %}" class="read-more">Batafsil</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Hozircha ushbu kategoriyada yangiliklar yo'q.</p>
+    {% endif %}
+    <a href="{% url 'home' %}" class="read-more">Ortga qaytish</a>
+{% endblock %}
